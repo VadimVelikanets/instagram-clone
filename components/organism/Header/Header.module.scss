@@ -1,0 +1,17 @@
+.header {
+  height: 60px;
+  padding: 12px 0;
+  border-bottom: 1px solid #dbdbdb;
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background: #fff;
+
+  &Wrapper {
+    display: flex;
+    height: 100%;
+    align-items: center;
+  }
+}

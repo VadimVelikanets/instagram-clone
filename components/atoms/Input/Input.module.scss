@@ -1,0 +1,36 @@
+.input {
+  position: relative;
+  input {
+    width: 100%;
+    border: 1px solid rgba(var(--ca6,219,219,219),1);
+    border-radius: 3px;
+    background: #fafafa;
+    margin-bottom: 6px;
+    padding: 14px 8px 2px;
+    height: 38px;
+    font-size: 12px;
+    color: #262626;
+    position: relative;
+  }
+
+  .label {
+    position: absolute;
+    left: 8px;
+    top: 7px;
+    color: #8e8e8e;
+    font-size: 16px;
+    transition: 0.4s all ease;
+    pointer-events: none;
+  }
+
+  input:focus, input:not([value=""]):not(:focus) {
+    outline: none;
+
+    & + .label {
+      top: 2px;
+      font-size: 12px;
+    }
+  }
+
+}
+

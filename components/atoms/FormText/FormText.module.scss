@@ -1,0 +1,27 @@
+.orText {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  &:before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 1px;
+    width: 100%;
+    background-color: #dbdbdb;
+    content: '';
+  }
+
+  span {
+    padding: 0 18px;
+    color: #8e8e8e;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 15px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+    background: #fff;
+  }
+}

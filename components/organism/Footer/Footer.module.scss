@@ -1,0 +1,13 @@
+.footer {
+  background-color: #fafafa;
+  padding: 24px 0;
+  &Copy {
+    font-size: 12px;
+    line-height: 16px;
+    color: #8e8e8e;
+  }
+  &Wrapper {
+    display: flex;
+    justify-content: center;
+  }
+}

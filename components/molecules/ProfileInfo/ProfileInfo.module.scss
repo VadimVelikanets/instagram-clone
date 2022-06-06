@@ -1,0 +1,66 @@
+.wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatarWrapper {
+  margin: 0 70px;
+}
+
+.infoData {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 20px 0;
+  &Item {
+    margin-right: 40px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.infoTop {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.infoName {
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: 300;
+}
+
+.infoEdit {
+  margin: 0 20px;
+  border-radius: 4px;
+  border: 1px solid rgba(var(--ca6,219,219,219),1);
+  padding: 5px 9px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.subscribeBtn {
+  margin: 0 20px;
+  border-radius: 4px;
+  border: 1px solid rgba(var(--ca6,219,219,219),1);
+  padding: 5px 9px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #0095f6;
+  color: #ffffff;
+}
+
+.infoUsername {
+  font-weight: 600;
+}

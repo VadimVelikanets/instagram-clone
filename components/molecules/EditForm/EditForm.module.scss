@@ -1,0 +1,36 @@
+.form {
+  width: 100%;
+}
+
+.aside {
+  width: 190px;
+  padding: 0 30px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.inputWrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin-bottom: 16px;
+
+  input, textarea {
+    max-width: 355px;
+    width: 100%;
+    border: 1px solid #dbdbdb;
+    height: 32px;
+    padding: 0 10px;
+    border-radius: 3px;
+  }
+
+  textarea {
+    height: 60px;
+  }
+}
+
+.submit{
+  &:disabled  {
+    opacity: 0.4;
+  }
+}

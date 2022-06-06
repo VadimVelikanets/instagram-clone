@@ -1,0 +1,176 @@
+.form {
+  background: #ffffff;
+  height: 654px;
+  min-width: 611px;
+  max-width: 951px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.title {
+  padding: 16px;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.fileWrapper {
+  height: calc(100% - 57px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.file {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
+    cursor: pointer;
+  }
+  button {
+    z-index: 0;
+  }
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}
+
+.btnNext {
+  color: #0095f6;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px #dbdbdb solid;
+}
+
+.content {
+  width: max-content;
+  padding: 18px 0;
+  border-top: 1px;
+  border-left: 1px #dbdbdb solid;
+}
+
+.textarea {
+  position: relative;
+  border-bottom: 1px #dbdbdb solid;
+  :global(.react-input-emoji--container){
+    border: none;
+    border-radius: 0;
+    height: 160px;
+    width: 100%;
+    margin: 0;
+  }
+
+  :grobal(.react-input-emoji--placeholder) {
+    padding: 0 17px;
+  }
+
+  :global(.react-input-emoji--input, .react-input-emoji--input) {
+    padding: 0;
+    max-height: 160px;
+  }
+
+  :global(.react-input-emoji--button) {
+    position: absolute;
+    left: 8px;
+    bottom: 4px;
+    padding: 0;
+  }
+
+  .limit {
+    position: absolute;
+    right: 8px;
+    bottom: 4px;
+  }
+}
+
+.placeInput {
+  position: relative;
+  border-bottom: 1px #dbdbdb solid;
+  margin-bottom: 10px;
+  input {
+    padding: 4px 17px;
+    width: 100%;
+  }
+  svg {
+    position: absolute;
+    right: 17px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.setting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 17px;
+  &Title {
+    margin-right: 16px;
+    max-width: 230px;
+  }
+
+  &Text {
+    font-size: 12px;
+    color: rgb(142,142,142);
+    padding: 12px 17px;
+  }
+}
+
+.finish {
+  height: 100%;
+  position: relative;
+  &Inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  &Title {
+    margin: 16px 0;
+  }
+}
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.profile {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 17px;
+
+  &Name {
+    margin-left: 12px;
+    font-weight: 600;
+  }
+}
+
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+}
