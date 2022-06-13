@@ -2,7 +2,7 @@ import React, {useEffect, FC} from 'react';
 import {useAppSelector} from "../../../hooks";
 import {useRouter} from "next/router";
 import ProfileInfo from "../../molecules/ProfileInfo/ProfileInfo";
-import PostList from "../../molecules/PostList/PostList";
+import UserPostList from "../../molecules/UserPostList/UserPostList";
 import MainLoader from "../../atoms/MainLoader/MainLoader";
 import {iProfileData} from "../../../store/types/profile";
 import {fetchProfile} from "../../../store/action-creators/profile";
@@ -24,7 +24,7 @@ const Profile: FC<iProfileData>  = ({profileData}) => {
     return (
         <div>
             <ProfileInfo profileData={profileData}/>
-            <PostList/>
+            <UserPostList uid={profileData?.uid}/>
         </div>
     );
 };

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch} from "react-redux";
 import {fetchUserEmail} from "../../../store/action-creators/user";
+import {useTranslation} from "react-i18next";
 import styles from './LoginForm.module.scss';
 import Image from "next/image";
 import Link from "next/link";
@@ -14,6 +15,7 @@ import {useRouter} from "next/router";
 const LoginForm = () => {
 
     const dispatch = useDispatch();
+    const {t} = useTranslation();
     const user = useAppSelector(state => state.user?.user)
     const router = useRouter()
 
@@ -46,19 +48,19 @@ const LoginForm = () => {
                 <Input value={email}
                        type="text"
                        onChange={e => setEmail(e.target.value)}
-                       label="Email" />
+                       label={t('loginPage.email')} />
                 <InputPassword value={password}
                                onChange={e => setPassword(e.target.value)}
-                               label="Password" />
-                <Button disabled={isDisableSubmit} btnEvent={signInEmail} className="my-3 bg-blue-400 text-white py-2 px-4 rounded-md" text="Sign In" />
+                               label={t('loginPage.password')} />
+                <Button disabled={isDisableSubmit} btnEvent={signInEmail} className="my-3 bg-blue-400 text-white py-2 px-4 rounded-md" text={t('loginPage.SignIn')} />
             </div>
             <FormText/>
             <BtnFacebookAuth className="my-4"/>
-            <Link className={styles.forgotLink} href="/account/reset"><span className={styles.forgotLink}>Forgot Password</span></Link>
+            <Link className={styles.forgotLink} href="/account/reset"><span className={styles.forgotLink}>{t('loginPage.forgotPassword')}</span></Link>
             </div>
             <div className={styles.signupInfo}>
                 <span className={styles.signupInfoText}>
-                    У вас ещё нет аккаунта? <Link href="/account/emailsignup"><span className={styles.signupInfoLink}>Sign up</span></Link>
+                    {t('loginPage.haveAnAccount')} <Link href="/account/emailsignup"><span className={styles.signupInfoLink}>{t('loginPage.SignUp')} </span></Link>
                 </span>
 
             </div>

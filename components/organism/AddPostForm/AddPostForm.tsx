@@ -1,6 +1,7 @@
 import React, {useState, FC} from 'react';
 import styles from './AddPostForm.module.scss';
 import Image from "next/image";
+import {useTranslation} from "react-i18next";
 import {useAppSelector} from "../../../hooks";
 import DragDropFiles from "../../atoms/DragDropFiles/DragDropFiles";
 import PreviewSlider from "../../molecules/PreviewSlider/PreviewSlider";
@@ -10,6 +11,7 @@ import {iAddPostForm} from "./types";
 import AddLoader from "../../atoms/AddLoader/AddLoader";
 import {uploadFiles} from "../../../pages/api/post";
 const AddPostForm: FC<iAddPostForm> = ({cancelPost, checkPostAdded}) => {
+    const {t} = useTranslation();
     const [step, setStep] = useState(1);
     const [images, setImages] = useState(null);
     const [files, setFiles] = useState<null | object>(null);
@@ -52,11 +54,11 @@ const AddPostForm: FC<iAddPostForm> = ({cancelPost, checkPostAdded}) => {
             {(() => {
                 switch (step) {
                     case 1:
-                        return <><div className={styles.title}>Создание публикации</div>
+                        return <><div className={styles.title}>{t('createPost.createNewPost')}</div>
                             <div className={styles.fileWrapper}>
                                 <DragDropFiles getDropFiles={getDropFiles}/>
                                 <div className={styles.file}>
-                                    <button className="bg-blue-400 text-white py-1 px-2 rounded-sm font-semibold text-sm">Выбрать с компьютера</button>
+                                    <button className="bg-blue-400 text-white py-1 px-2 rounded-sm font-semibold text-sm">{t('createPost.selectFiles')}</button>
                                     <input type="file" accept="image/jpeg,image/png" multiple onChange={e => uploadPostFilesHandler(e)}/>
                                 </div>
                             </div>
@@ -73,14 +75,14 @@ const AddPostForm: FC<iAddPostForm> = ({cancelPost, checkPostAdded}) => {
                                               stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                               stroke-width="2"></polyline>
                                 </svg></button>
-                            <div><b>Просмотр</b></div>
+                            <div><b>{t('createPost.view')}</b></div>
                             <button className={styles.btnNext}
                                     onClick={() => setStep(step + 1)}
-                            >Далее</button>
+                            >{t('createPost.nextBtn')}</button>
                         </div>
                         <PreviewSlider>
-                            {images && images.map((item, index) => (
-                                <Image src={item} width="100%" height="100%" layout="responsive" objectFit="cover"/>
+                            {images && images.map((item) => (
+                                <Image key={item} src={item} width="100%" height="100%" layout="responsive" objectFit="cover"/>
                             ))}
                         </PreviewSlider>
                     </>
@@ -96,15 +98,15 @@ const AddPostForm: FC<iAddPostForm> = ({cancelPost, checkPostAdded}) => {
                                               stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                               stroke-width="2"></polyline>
                                 </svg></button>
-                            <div><b>Создание публикации</b></div>
+                            <div><b>{t('createPost.createNewPost')}</b></div>
                             <button className={styles.btnNext}
                                     onClick={addPostHandler}
-                            >Поделиться</button>
+                            >{t('createPost.shareBtn')}</button>
                         </div>
                         <div className={styles.info}>
                             <PreviewSlider>
-                                {images && images.map((item, index) => (
-                                    <Image src={item} width="100%" height="100%" layout="responsive" objectFit="cover"/>
+                                {images && images.map((item) => (
+                                    <Image key={item} src={item} width="100%" height="100%" layout="responsive" objectFit="cover"/>
                                 ))}
                             </PreviewSlider>
                             <div className={styles.content}>
@@ -118,17 +120,16 @@ const AddPostForm: FC<iAddPostForm> = ({cancelPost, checkPostAdded}) => {
                                     <InputEmoji
                                         value={description}
                                         onChange={setDescription}
-                                        placeholder="Придумайте подпись..."
+                                        placeholder={t('createPost.caption')}
                                     />
                                     <div className={styles.limit}>{description.length}/2200</div>
                                 </div>
                                 <div className={styles.placeInput}>
                                     <input type="text"
                                            value={place}
-                                           placeholder="Добавить место"
+                                           placeholder={t('createPost.addLocation')}
                                            onChange={e=> setPlace(e.target.value)}
                                     />
-
                                     <span>
                                         <svg aria-label="Добавить место" className="_ab6-" color="#8e8e8e"
                                              fill="#8e8e8e" height="16" role="img" viewBox="0 0 24 24" width="16"><path
@@ -137,24 +138,23 @@ const AddPostForm: FC<iAddPostForm> = ({cancelPost, checkPostAdded}) => {
                                 </div>
                                 <div className={styles.setting}>
                                     <div className={styles.settingTitle}>
-                                        Скрывать число отметок "Нравится" и просмотров этой публикации
+                                        {t('createPost.hideLikeTitle')}
                                     </div>
                                     <Switch checked={isOffLikes} onChange={e => setOffLikes(!isOffLikes)}/>
                                 </div>
                                 <div className={styles.settingText}>
-                                    Только вы будете видеть общее число отметок "Нравится" и просмотров этой публикации. Вы можете изменить эту настройку позже. Для этого нажмите на значок ··· вверху публикации. Чтобы скрыть число отметок "Нравится" в публикациях других людей, перейдите в настройки своего аккаунта.
+                                    {t('createPost.hideLikeText')}
                                 </div>
                                 <div className={styles.setting}>
                                     <div className={styles.settingTitle}>
-                                        Выключить комментарии
+                                        {t('createPost.TurnOffComment')}
                                     </div>
                                     <Switch checked={isOffComments} onChange={e => setOffComments(!isOffComments)}/>
                                 </div>
                                 <div className={styles.settingText}>
-                                    Вы сможете изменить это позже в меню "···" в верхней части вашей публикации.
+                                    {t('createPost.TurnOffCommentText')}
                                 </div>
                             </div>
-
                         </div>
                     </>
                     case 4: return <>
@@ -164,16 +164,16 @@ const AddPostForm: FC<iAddPostForm> = ({cancelPost, checkPostAdded}) => {
                                     <AddLoader/>
                                 </div>
                             ) : (<>
-                                <div className={styles.title}>Вы поделились публикацией</div>
+                                <div className={styles.title}>{t('createPost.sharedPost')}</div>
                                 <div className={styles.finishInner}>
                                     <Image src={'/images/ok.gif'} width={96} height={96}/>
-                                    <div className={styles.finishTitle}>Публикация размещена.</div>
+                                    <div className={styles.finishTitle}>{t('createPost.posted')}</div>
                                 </div>
                                 </>)}
                         </div>
                     </>
                     default:
-                        return <><div className={styles.title}>Создание публикации</div>
+                        return <><div className={styles.title}>{t('createPost.createNewPost')}</div>
                             <input type="file" accept="image/jpeg,image/png" multiple onChange={e => uploadPostFilesHandler(e)}/>
                         </>
                 }

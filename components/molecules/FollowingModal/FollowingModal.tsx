@@ -14,8 +14,8 @@ const FollowingModal : FC<IFollowersModal> = ({uid}) => {
         <div className={styles.wrapper}>
             <div className={styles.title}>Подписки</div>
             <div className={styles.list}>
-               {followers.length ? followers.map((item, index) => (
-                   <div className={styles.item}>
+               {followers.length ? followers.map((item) => (
+                   <div key={item.nickname} className={styles.item}>
                        <Link href={item?.nickname}>
                            <a className={styles.avatarLink}>
                                <Image src={(item && item?.photoUrl != null) ? item?.photoUrl: "/images/empty-avatar.png"}

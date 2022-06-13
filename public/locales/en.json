@@ -1,0 +1,76 @@
+{
+  "common" : {
+    "profilePage" : {
+      "editBtn" : "Edit profile",
+      "posts": "posts",
+      "followers": "followers",
+      "following": "following",
+      "followBtn": "Follow",
+      "unfollowBtn": "Unfollow",
+      "noPosts": "No Posts Yet"
+    },
+    "editPage": {
+      "editProfile" : "Edit Profile",
+      "changePhoto": "Change Profile Photo",
+      "name": "Name",
+      "nickname": "Nickname",
+      "website": "website",
+      "about": "About",
+      "email": "Email",
+      "submit": "Submit"
+    },
+    "createPost": {
+      "createNewPost" : "Create new post",
+      "dragFiles": "Drag photos and videos here",
+      "selectFiles": "Select from computer",
+      "nextBtn": "Next",
+      "view": "View",
+      "shareBtn": "Share",
+      "caption": "Write a caption",
+      "addLocation": "Add location",
+      "hideLikeTitle": "Hide like and view counts on this post",
+      "hideLikeText": "Only you will see the total number of likes and views on this post. You can change this later by going to the ··· menu at the top of the post. To hide like counts on other people's posts, go to your account settings.",
+      "TurnOffComment": "Turn off commenting",
+      "TurnOffCommentText": "You can change this later by going to the ··· menu at the top of your post.",
+      "sharedPost": "You shared a post",
+      "posted": "The publication has been posted.",
+      "confirmModal" : {
+        "title" : "Discard post?",
+        "text" : "If you leave, your edits won't be saved.",
+        "discard" : "Discard",
+        "cancel" : "Cancel"
+      }
+    },
+    "loginPage": {
+      "email": "email",
+      "password": "Password",
+      "showPassword": "Show",
+      "hidePassword": "Hide",
+      "SignIn": "Sign In",
+      "SignUp": "Sign Up",
+      "facebookLogin": "Log in with Facebook",
+      "forgotPassword": "Forgot password?",
+      "haveAnAccount": "Don't have an account?",
+      "or": "OR"
+    },
+    "signupPage": {
+      "title": "Sign up to see photos and videos from your friends.",
+      "email": "Email",
+      "password": "Password",
+      "username": "User Name",
+      "fullname": "Full Name",
+      "signUp": "Sign Up",
+      "login": "Login",
+      "haveAccount": "Have an account?"
+    },
+    "resetPage": {
+      "head": "Reset Password",
+      "title": "Trouble Logging In?",
+      "text": "Enter your email, phone, or username and we'll send you a link to get back into your account.",
+      "email": "Email",
+      "send": "Send Login Link",
+      "createAccount": "Create New Account",
+      "login": "Back to Login"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import {Dispatch} from "redux";
 import {firestore} from "../../config/firebaseSetup";
 import {iProfileData, ProfileAction, profileActions} from "../types/profile";
-
+import {auth} from "../../config/firebaseSetup";
 export const fetchProfile = (uid: string) => {
     return async (dispatch: Dispatch<ProfileAction>) => {
         try {
@@ -20,6 +20,7 @@ export const updateProfile = (profileData: iProfileData) => {
         try {
             const response =  firestore.collection('users').doc(profileData.uid);
             await  response.update({...profileData})
+            await auth.currentUser.updateEmail(profileData.email)
             dispatch({type: profileActions.EDIT_PROFILE, payload: profileData})
         }
         catch (e){

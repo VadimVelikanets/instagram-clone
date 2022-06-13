@@ -8,7 +8,8 @@ const Home: NextPage = () => {
         <Head>
             <title>Instagram</title>
         </Head>
-      <PostList/>
+      {/*<PostList/>*/}
+        <div>Main</div>
     </div>
   )
 }

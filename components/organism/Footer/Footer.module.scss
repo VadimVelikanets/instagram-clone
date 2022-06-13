@@ -5,9 +5,11 @@
     font-size: 12px;
     line-height: 16px;
     color: #8e8e8e;
+    margin-left: 16px;
   }
   &Wrapper {
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 }

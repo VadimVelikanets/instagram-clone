@@ -2,6 +2,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  margin-bottom: 44px;
 }
 
 .avatar {
@@ -62,5 +63,10 @@
 }
 
 .infoUsername {
+  font-weight: 600;
+}
+
+.website {
+  color: rgb(0, 55, 107);
   font-weight: 600;
 }

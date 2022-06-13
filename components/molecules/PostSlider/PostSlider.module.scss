@@ -1,0 +1,65 @@
+.slider {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+}
+
+.wrapper {
+  height: 100%;
+  min-width: 611px;
+}
+
+.arrow {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  line-height: 32px;
+  border-radius: 50%;
+  display: flex;
+  z-index: 2;
+  background: rgba(26, 26, 26, 0.8);
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+
+  &_prev {
+    left: 16px;
+  }
+
+  &_next {
+    right: 16px;
+  }
+
+  &:global([aria-disabled="true"]) {
+    display: none;
+  }
+}
+
+.dots {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex!important;
+  justify-content: center;
+  li {
+    margin: 0 4px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #a8a8a8;
+
+    &:global(.slick-active) {
+      background: #0095f6;
+    }
+
+    button {
+      opacity: 0;
+    }
+  }
+}

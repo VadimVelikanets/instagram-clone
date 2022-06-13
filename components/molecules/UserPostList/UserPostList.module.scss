@@ -1,0 +1,17 @@
+.postList {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  width: calc(100% + 28px);
+  position: relative;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: 60px 0;
+  width: 100%;
+}

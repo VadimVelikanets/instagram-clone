@@ -56,3 +56,27 @@ export const  uploadFiles =  async ({uid, description,place, isOffLikes, isOffCo
         console.log(e)
     }
 }
+
+export const getPostById = async (id: string) => {
+    try {
+        const response = await firestore.collection('posts').doc(id).get().then(snapshot => snapshot.data());
+        const data = response
+        return data
+    }
+    catch (e){
+        console.error(e)
+    }
+}
+
+export const getPostsSize = async (uid: string) => {
+    try {
+        const response = await firestore.collection('posts')
+            .where('uid', '==', uid ).get()
+            .then((snapshot) => snapshot.docs.length);
+        const data = response
+        return data
+    }
+    catch (e){
+        console.error(e)
+    }
+}

@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
+import {useTranslation} from "react-i18next";
 import styles from "./InputPassword.module.scss";
 import {InputProps} from "./types";
 
 const InputPassword = ({value, onChange, placeholder, label}: InputProps) => {
     const [isShowPassword, setSetPassword] = useState<boolean>(false);
-
+    const {t} = useTranslation();
     const showPasswordHandler = () => {
         setSetPassword(!isShowPassword)
     }
@@ -15,7 +16,7 @@ const InputPassword = ({value, onChange, placeholder, label}: InputProps) => {
                    onChange={onChange}
                    placeholder={placeholder}/>
             {label && <div className={styles.label}>{label}</div>}
-            <button className={styles.passwordBtn} onClick={showPasswordHandler}>{isShowPassword ? "Hide" : "Show"}</button>
+            <button className={styles.passwordBtn} onClick={showPasswordHandler}>{isShowPassword ? t('loginPage.hidePassword') : t('loginPage.showPassword')}</button>
         </div>
     );
 };

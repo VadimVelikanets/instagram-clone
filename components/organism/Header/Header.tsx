@@ -1,6 +1,7 @@
 import React, {useEffect, FC, useState} from 'react';
 import Image from 'next/image';
 import Link from "next/link";
+import {useTranslation} from "react-i18next";
 import styles from "./Header.module.scss";
 import {useDispatch} from "react-redux";
 import {logoutUser} from "../../../store/action-creators/user";
@@ -15,6 +16,7 @@ const Header: FC<iHeader> = ({uid}) => {
 
     const router = useRouter();
     const dispatch = useDispatch();
+    const {t} = useTranslation()
     const [nickname, setNickname] = useState(null)
     const [isAddModalOpen, setAddModalOpen] = useState(false)
     const [showConfirmCloseModal, setConfirmCloseModal] = useState(false)
@@ -67,10 +69,10 @@ const Header: FC<iHeader> = ({uid}) => {
 
             <Modal isOpen={showConfirmCloseModal} onClose={() => setConfirmCloseModal(false)}>
                 <ConfirmModal
-                    title={`Отменить публикацию?`}
-                    text={`Если вы выйдете, изменения не будут сохранены.`}
-                    btnConfirm={`Удалить`}
-                    btnCancel={`Отмена`}
+                    title={t('createPost.confirmModal.title')}
+                    text={t('createPost.confirmModal.text')}
+                    btnConfirm={t('createPost.confirmModal.discard')}
+                    btnCancel={t('createPost.confirmModal.cancel')}
                     confirmEvent={() => {
                         setAddModalOpen(false)
                         setConfirmCloseModal(false)

@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {useTranslation} from "react-i18next";
 import {useDispatch} from "react-redux";
 import {fetchUser} from "../../../store/action-creators/user";
 import styles from './SignupForm.module.scss';
@@ -14,7 +15,7 @@ import FormText from "../../atoms/FormText/FormText";
 import {useAppSelector} from "../../../hooks";
 
 const SignupForm = () => {
-
+    const {t} = useTranslation()
     const user = useAppSelector(state => state.user?.user)
     const router = useRouter()
     if(user) {
@@ -46,30 +47,32 @@ const SignupForm = () => {
         <>
             <div className={styles.login}>
                 <Image src="/images/login-logo.png" width="175" height="51" className={`${styles.logo} mb-8`}/>
-                <div className={styles.text}>Зарегистрируйтесь, чтобы смотреть фото и видео ваших друзей.</div>
+                <div className={styles.text}>{t('signupPage.title')}</div>
                 <BtnFacebookAuth className="mb-3"/>
                 <FormText/>
                 <div className="form mt-6 flex flex-col w-full">
                     <Input value={email}
                            onChange={e => setEmail(e.target.value)}
                            type="text"
-                           label="Email"/>
+                           label={t('signupPage.email')}/>
                     <Input value={name}
                            onChange={e => setName(e.target.value)}
                            type="text"
-                           label="Full name"/>
+                           label={t('signupPage.fullname')}/>
                     <Input value={nickname}
                            onChange={e => setNickname(e.target.value)}
                            type="text"
-                           label="User Name"/>
+                           label={t('signupPage.username')}/>
                     <InputPassword value={password}
-                                   onChange={e => setPassword(e.target.value)} label="Password" />
-                    <Button disabled={isDisableSubmit} btnEvent={signUpHandler} className="my-3 bg-blue-400 text-white py-2 px-4 rounded-md" text="Sign Up" />
+                                   onChange={e => setPassword(e.target.value)} label={t('signupPage.password')} />
+                    <Button disabled={isDisableSubmit} btnEvent={signUpHandler}
+                            className="my-3 bg-blue-400 text-white py-2 px-4 rounded-md"
+                            text={t('signupPage.signUp')} />
                 </div>
             </div>
             <div className={styles.signupInfo}>
                 <span className={styles.signupInfoText}>
-                    Есть аккаунт <Link href="/account/login"><span className={styles.signupInfoLink}>Login</span></Link>
+                    {t('signupPage.haveAccount')} <Link href="/account/login"><span className={styles.signupInfoLink}>{t('signupPage.login')}</span></Link>
                 </span>
 
             </div>

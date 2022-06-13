@@ -2,6 +2,7 @@ import React, {useEffect, useState, FC} from 'react';
 import styles from './ProfileInfo.module.scss';
 import Image from "next/image";
 import Link from "next/link";
+import {useTranslation} from "react-i18next";
 import {iProfileData} from "../../../store/types/profile";
 import {useRouter} from "next/router";
 import {useAppSelector} from "../../../hooks";
@@ -14,16 +15,20 @@ import {
 } from '../../../pages/api/subscribe';
 import FollowersModal from "../FollowersModal/FollowersModal";
 import FollowingModal from "../FollowingModal/FollowingModal";
+import {getPostsSize} from "../../../pages/api/post";
 
 const ProfileInfo : FC<iProfileData>  = ({profileData}) => {
     const profile = useAppSelector(state => state.profile?.profile)
     const router = useRouter()
     const {query} = useRouter()
+    const {t} = useTranslation();
     const [isSubscribted, setIsSubscribted] = useState(false)
     const [subCount, setSubCount] = useState({
         subscriptions: 0,
         subscribers: 0
     })
+    const [postsCount, setPostsCount] = useState(0);
+
     const subscribeHandler = () => {
         subscribeToUser(profileData.uid, profile?.uid)
         setIsSubscribted(true)
@@ -35,6 +40,7 @@ const ProfileInfo : FC<iProfileData>  = ({profileData}) => {
         setSubCount({ ...subCount, subscribers: subCount.subscribers - 1})
     }
 
+
     useEffect(()=> {
         if(profile?.nickname !== query.id){
             const check =  checkSubscription(profileData.uid, profile?.uid).then(data => setIsSubscribted(data))
@@ -43,6 +49,7 @@ const ProfileInfo : FC<iProfileData>  = ({profileData}) => {
 
     useEffect(()=> {
         getSubscriptionCount(profileData.uid).then(data => setSubCount(data))
+        getPostsSize(profileData.uid).then(data => setPostsCount(data))
     },[query])
 
     return (
@@ -63,7 +70,7 @@ const ProfileInfo : FC<iProfileData>  = ({profileData}) => {
                                 <>
                                     <Link href="/account/edit" >
                                         <span className={styles.infoEdit}>
-                                            Редактировать профиль
+                                            {t('profilePage.editBtn')}
                                         </span>
                                     </Link>
                                     <button className={styles.infoSettings}>
@@ -79,35 +86,36 @@ const ProfileInfo : FC<iProfileData>  = ({profileData}) => {
                                 </>
                             ) : (isSubscribted ? ( <button  onClick={unsubscribeHandler}>
                                 <span className={styles.subscribeBtn}>
-                                    Отписаться
+                                    {t('profilePage.unfollowBtn')}
                                 </span>
                                     </button>
                                 ): ( <button  onClick={subscribeHandler}>
                                 <span className={styles.subscribeBtn}>
-                                    Подписаться
+                                     {t('profilePage.followBtn')}
                                 </span>
                                 </button>)
-
                             )}
                         </div>
                         <div className={styles.infoData}>
-                            <div className={styles.infoDataItem}><b>0</b> публикаций</div>
+                            <div className={styles.infoDataItem}><b>{postsCount}</b> {t('profilePage.posts')}</div>
                             <Link
                                 href={`${query.id}/?followers=${query.id}`}
                             >
                                 <a className={styles.infoDataItem}>
-                                    <b>{subCount.subscribers}</b> подписчик
+                                    <b>{subCount.subscribers}</b> {t('profilePage.followers')}
                                 </a>
                             </Link>
                             <Link
                                  href={`${query.id}/?following=${query.id}`}
                             >
                                 <a className={styles.infoDataItem}>
-                                    <b>{subCount.subscriptions}</b> подписок
+                                    <b>{subCount.subscriptions}</b> {t('profilePage.following')}
                                 </a>
                             </Link>
                         </div>
                         <div className={styles.infoUsername}>{profileData && profileData?.name}</div>
+                        <div>{profileData && profileData?.about}</div>
+                        {profileData?.website && (  <div className={styles.website}><a href={profileData?.website} target="_blank">{profileData?.website}</a></div>)}
                     </div>
                 </div>
             </div>

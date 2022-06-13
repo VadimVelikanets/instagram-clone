@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
+import {useTranslation} from "react-i18next";
 import styles from './DragDropFiles.module.scss';
 import {IDragDropFiles} from './types';
 
 const DragDropFiles = ({getDropFiles}: IDragDropFiles) => {
+    const {t} = useTranslation()
     const [drag, setDrag] = useState(false)
     const dragStartHandler = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
@@ -55,7 +57,7 @@ const DragDropFiles = ({getDropFiles}: IDragDropFiles) => {
 
             </span>
 
-            <div className={styles.title}>Перетащите сюда фото и видео</div>
+            <div className={styles.title}>{t('createPost.dragFiles')}</div>
         </div>
     );
 };
