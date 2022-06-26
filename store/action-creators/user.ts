@@ -58,6 +58,7 @@ export const fetchUserFacebook = () => {
             await auth.signInWithPopup(provider).then(res => console.log(res))
             dispatch({type: userActions.FETCH_USER_SUCCESS, payload: auth.currentUser})
             localStorage.setItem('userData', JSON.stringify(auth.currentUser))
+            return auth.currentUser
         }
         catch (e){
             dispatch({type: userActions.FETCH_USER_ERROR, payload : "Auth error!"})

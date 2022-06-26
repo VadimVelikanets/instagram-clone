@@ -1,3 +1,3 @@
 export interface BtnFacebookProps {
-    className?: string
+    className?: string,
 }

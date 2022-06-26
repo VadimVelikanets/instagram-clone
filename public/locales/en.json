@@ -83,7 +83,9 @@
       "fullname": "Full Name",
       "signUp": "Sign Up",
       "login": "Login",
-      "haveAccount": "Have an account?"
+      "haveAccount": "Have an account?",
+      "nickNameExits": "Nickname already exist",
+      "nickNameEmailExits": "Nickname or email already exist"
     },
     "resetPage": {
       "head": "Reset Password",

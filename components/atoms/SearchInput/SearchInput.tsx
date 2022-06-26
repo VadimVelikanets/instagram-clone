@@ -24,7 +24,6 @@ const SearchInput = () => {
                  .then(res => {
                      setSearchData(res)
                      setLoading(false)
-                     console.log(searchData)
                  })
 
         } else {

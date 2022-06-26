@@ -83,7 +83,9 @@
       "fullname": "Имя и фамилия",
       "signUp": "Регистрация",
       "login": "Вход",
-      "haveAccount": "Есть аккаунт?"
+      "haveAccount": "Есть аккаунт?",
+      "nickNameExits": "Имя пользователя уже существует",
+      "nickNameEmailExits": "Имя пользователя или почта уже существует"
     },
     "resetPage": {
       "head": "Забыли пароль",

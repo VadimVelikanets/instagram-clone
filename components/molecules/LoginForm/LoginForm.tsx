@@ -17,6 +17,7 @@ const LoginForm = () => {
     const dispatch = useDispatch();
     const {t} = useTranslation();
     const user = useAppSelector(state => state.user?.user)
+    const profile = useAppSelector(state => state.profile?.profile)
     const error = useAppSelector(state => state.user?.error)
     const router = useRouter()
 
