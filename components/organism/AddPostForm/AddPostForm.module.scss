@@ -83,6 +83,10 @@
     padding: 0 17px;
   }
 
+  :global(.react-emoji-picker--wrapper) {
+    top: 160px
+  }
+
   :global(.react-input-emoji--input, .react-input-emoji--input) {
     padding: 0;
     max-height: 160px;

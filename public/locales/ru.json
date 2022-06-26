@@ -1,5 +1,24 @@
 {
   "common" : {
+    "header": {
+      "confirm" : {
+        "title": "Выход",
+        "text": "Вы уверены?",
+        "logout": "Выйти",
+        "cancel": "Отмена"
+      },
+      "dropdown": {
+        "profile": "Профиль",
+        "settings": "Настройки",
+        "logout": "Выйти"
+      },
+      "search": {
+        "search": "Поиск",
+        "recent": "Недавние",
+        "noRecent": "Нет недавних запросов.",
+        "notFound": "Ничего не найдено."
+      }
+    },
     "profilePage" : {
       "editBtn" : "Редактировать профиль",
       "posts": "публикаций",
@@ -7,7 +26,9 @@
       "following": "подписок",
       "followBtn": "Подписаться",
       "unfollowBtn": "Отписаться",
-      "noPosts": "Публикаций пока нет"
+      "noPosts": "Публикаций пока нет",
+      "followers": "Followers",
+      "following": "Following"
     },
     "editPage": {
       "editProfile" : "Редактировать профиль",
@@ -51,7 +72,8 @@
       "facebookLogin": "Войти через Facebook",
       "forgotPassword": "Забыли пароль?",
       "haveAnAccount": "У вас ещё нет аккаунта?",
-      "or": "ИЛИ"
+      "or": "ИЛИ",
+      "loginError": "Неверный логин или пароль"
     },
     "signupPage": {
       "title": "Зарегистрируйтесь, чтобы смотреть фото и видео ваших друзей.",
@@ -71,6 +93,17 @@
       "send": "Получить ссылку для входа",
       "createAccount": "Создать новый аккаунт",
       "login": "Вернуться к входу"
+    },
+    "postPage" : {
+      "likesCount" : "отметок \"Нравится\"",
+      "likesTitle" : "Отметки \"Нравится\"",
+      "comments": {
+        "noCommentsTitle": "Нет комментариев.",
+        "noCommentsText": "Начните переписку.",
+        "addComment": "Добавить комментарий...",
+        "publish": "Опубликовать",
+        "reply": "Ответить"
+      }
     }
   }
 }

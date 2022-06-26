@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useTranslation} from "react-i18next";
-import {useDispatch} from "react-redux";
-import {fetchUser} from "../../../store/action-creators/user";
 import styles from './SignupForm.module.scss';
 import Image from "next/image";
 import Link from "next/link";
+import {checkUserExist} from "../../../pages/api/signUp";
 import {signUp} from "../../../pages/api/signUp";
 import {useRouter} from "next/router";
 import Input from "../../atoms/Input/Input";
@@ -13,24 +12,42 @@ import Button from "../../atoms/Button/Button";
 import BtnFacebookAuth from "../../atoms/BtnFacebookAuth/BtnFacebookAuth";
 import FormText from "../../atoms/FormText/FormText";
 import {useAppSelector} from "../../../hooks";
+import {useDispatch} from "react-redux";
+
 
 const SignupForm = () => {
-    const {t} = useTranslation()
+    const {t} = useTranslation();
     const user = useAppSelector(state => state.user?.user)
     const router = useRouter()
-    if(user) {
-        router.push('/')
-    }
-    const signUpHandler =  () => {
-        signUp(email, password, name, nickname)
-        router.push('/account/login')
-    };
-
     const [email, setEmail] = React.useState('')
     const [name, setName] = React.useState('')
     const [nickname, setNickname] = React.useState('')
     const [password, setPassword] = React.useState('')
     const [isDisableSubmit, setDisableSubmit] = useState(false);
+    const [isUserExist, setUserExist] = useState(false);
+
+    if(user) {
+        router.push('/')
+    }
+
+    const createUser = () => {
+        signUp(email, password, name, nickname).then(() => {
+                router.push('/account/login')
+        })
+    }
+
+    const signUpHandler =  () => {
+        setDisableSubmit(true)
+        checkUserExist(nickname, email)
+            .then((res)=> {
+                if(!res) {
+                    createUser()
+                } else {
+                    setUserExist(true)
+                }
+            })
+            .then(() => setDisableSubmit(false))
+    };
 
     useEffect(() => {
         if(email === '' ||
@@ -68,6 +85,7 @@ const SignupForm = () => {
                     <Button disabled={isDisableSubmit} btnEvent={signUpHandler}
                             className="my-3 bg-blue-400 text-white py-2 px-4 rounded-md"
                             text={t('signupPage.signUp')} />
+                    {isUserExist &&  <div className={styles.error}>Nickname or email already exist</div>}
                 </div>
             </div>
             <div className={styles.signupInfo}>

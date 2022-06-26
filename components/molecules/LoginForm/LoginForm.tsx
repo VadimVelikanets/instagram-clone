@@ -17,6 +17,7 @@ const LoginForm = () => {
     const dispatch = useDispatch();
     const {t} = useTranslation();
     const user = useAppSelector(state => state.user?.user)
+    const error = useAppSelector(state => state.user?.error)
     const router = useRouter()
 
     const [email, setEmail] = React.useState('')
@@ -38,7 +39,10 @@ const LoginForm = () => {
     }, [email, password])
 
     const signInEmail = async () => {
-        dispatch(fetchUserEmail({email,password}))
+            dispatch(fetchUserEmail({email,password}))
+    }
+    if(error) {
+        console.log(error)
     }
     return (
         <>
@@ -53,6 +57,7 @@ const LoginForm = () => {
                                onChange={e => setPassword(e.target.value)}
                                label={t('loginPage.password')} />
                 <Button disabled={isDisableSubmit} btnEvent={signInEmail} className="my-3 bg-blue-400 text-white py-2 px-4 rounded-md" text={t('loginPage.SignIn')} />
+                {error && <div className={styles.error}>{t('loginPage.loginError')}</div>}
             </div>
             <FormText/>
             <BtnFacebookAuth className="my-4"/>

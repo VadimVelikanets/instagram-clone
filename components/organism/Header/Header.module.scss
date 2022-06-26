@@ -14,4 +14,10 @@
     height: 100%;
     align-items: center;
   }
+
+  &Right {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
 }

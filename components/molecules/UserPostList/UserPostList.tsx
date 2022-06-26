@@ -8,13 +8,14 @@ import {getMorePostsById, getPostsById} from "../../../store/action-creators/pos
 import {getPostsSize} from "../../../pages/api/post";
 import {useAppSelector} from "../../../hooks";
 import Loader from "../../atoms/Loader/Loader";
+import Pagination from "../Pagination/Pagination";
 
 const UserPostList = ({uid}: iUserPostListProps) => {
     const dispatch = useDispatch()
     const [postList, setPostList] = useState(null);
     const [postKey, setPostKey] = useState(null);
     const [isLoading, setLoading] = useState(true);
-    const [postSize, setPostSize] = useState(0);
+    const [postSize, setPostSize] = useState<number>(0);
     const postData = useAppSelector(state => state.posts?.posts?.[uid])
 
     useEffect(() => {
@@ -30,24 +31,10 @@ const UserPostList = ({uid}: iUserPostListProps) => {
     }, [postData, postList, postKey])
 
     const loadNextPosts = useCallback(() => {
-          if (postKey && !isLoading) {
               setLoading(true)
               dispatch(getMorePostsById(uid, postKey))
-          }
+
     },[postKey, isLoading, postData])
-
-    useEffect(() => {
-        function watchScroll() {
-            window.addEventListener("scroll", loadNextPosts);
-        }
-        if(postSize > postData?.data.length) {
-            watchScroll();
-        }
-
-        return () => {
-            window.removeEventListener("scroll", loadNextPosts);
-        };
-    }, [postKey, postList, isLoading]);
 
     if(isLoading && !postData?.data.length) return (
         <div className={styles.wrapper}>
@@ -56,12 +43,19 @@ const UserPostList = ({uid}: iUserPostListProps) => {
     )
     return (
         <div className={styles.postList}>
-            {(postData?.data && postData?.data.length) ? (postData?.data.map((item) => (
-                <PostItem key={item.createdAt} item={item}/>
-            ))) : (
+            {(postData?.data && postData?.data.length) ? (
+                <Pagination dataKey={postKey}
+                          data={postData?.data}
+                          isLoading={isLoading}
+                          dataSize={postSize}
+                          loadNextDataCallback={loadNextPosts}>
+                    {postData?.data.map((item) => (
+                    <PostItem key={item.createdAt} item={item}/>
+                    ))}
+                </Pagination>
+                ) : (
                 <NoPosts/>
-            )
-            }
+            )}
             {isLoading &&
                 <div className={styles.wrapper}>
                     <Loader/>

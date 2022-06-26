@@ -4,34 +4,24 @@ import Link from "next/link";
 import {useTranslation} from "react-i18next";
 import styles from "./Header.module.scss";
 import {useDispatch} from "react-redux";
-import {logoutUser} from "../../../store/action-creators/user";
 import {useRouter} from "next/router";
 import {getProfileData} from "../../../pages/api/profile";
 import Modal from "../Modal/Modal";
 import AddPostForm from "../AddPostForm/AddPostForm";
 import {iHeader} from "./types";
 import ConfirmModal from "../../molecules/ConfirmModal/ConfirmModal";
+import ProfileDropdown from "../../molecules/ProfileDropdown/ProfileDropdown";
+import SearchInput from "../../atoms/SearchInput/SearchInput";
 
 const Header: FC<iHeader> = ({uid}) => {
 
     const router = useRouter();
     const dispatch = useDispatch();
     const {t} = useTranslation()
-    const [nickname, setNickname] = useState(null)
     const [isAddModalOpen, setAddModalOpen] = useState(false)
     const [showConfirmCloseModal, setConfirmCloseModal] = useState(false)
     const [isPostAdded, setPostAdded] = useState(false)
-    const logoutHandler = () => {
-        dispatch(logoutUser());
-        router.push('/account/login')
-    }
 
-    useEffect(() => {
-        if(uid) {
-            getProfileData(uid).then(data => setNickname(data?.nickname))
-        }
-
-    }, [])
     const addPostHandler = () => {
         setAddModalOpen(true)
     }
@@ -51,12 +41,12 @@ const Header: FC<iHeader> = ({uid}) => {
                         <Link href="/">
                             <Image src="/images/logo.png" width="103" height="29"/>
                         </Link>
+                        <SearchInput/>
                         <div className={styles.headerRight}>
                             <button onClick={addPostHandler}>
-                                <Image src="/images/icons/add.svg" width={20} height={20}/>
+                                <Image src="/images/icons/add.svg" width={24} height={24}/>
                             </button>
-                            {nickname && <Link href={`/${nickname}`}> Profile </Link>}
-                            <button onClick={logoutHandler}>Logout</button>
+                            <ProfileDropdown uid={uid}/>
                         </div>
                     </div>
                 </div>

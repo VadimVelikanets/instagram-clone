@@ -16,14 +16,13 @@ const Layout: React.FC = ({children}: Props) => {
         if(data) {
             dispatch(getUser(data))
         }
-
     },[]);
 
     if(isLoading) return <MainLoader/>
 
     return (
         <div className="layout">
-            <Header uid={uid}/>
+            {uid &&  <Header uid={uid}/>}
             <div className="content">
                 <div className="layout-container ">
                     {children}

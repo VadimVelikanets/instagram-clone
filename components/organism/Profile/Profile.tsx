@@ -10,7 +10,6 @@ import {useDispatch} from "react-redux";
 
 const Profile: FC<iProfileData>  = ({profileData}) => {
     const user = useAppSelector(state => state.user?.user)
-    const profile = useAppSelector(state => state)
     const router = useRouter()
     const dispatch = useDispatch();
     useEffect(() => {

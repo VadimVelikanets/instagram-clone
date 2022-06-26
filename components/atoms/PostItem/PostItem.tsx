@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import styles from './PostItem.module.scss';
@@ -6,11 +6,15 @@ import {iPostItem} from "../../molecules/UserPostList/types";
 import Modal from "../../organism/Modal/Modal";
 import PostModal from "../../organism/PostModal/PostModal";
 import {useRouter} from "next/router";
+import {getProfileData} from "../../../pages/api/profile";
 
 const PostItem = ({ item} : iPostItem) => {
     const router = useRouter()
     const {query} = useRouter()
-
+    const [postAuthor, setPostAuthor] = useState(null);
+    useEffect(() => {
+        getProfileData(item?.uid).then(res => setPostAuthor(res))
+    }, [])
     return (
         <>
             <div className={styles.postItem}>
@@ -25,7 +29,7 @@ const PostItem = ({ item} : iPostItem) => {
                                       stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path>
                                 </svg>
                             </span>
-                                <span>{item.likes?.length}</span>
+                                <span>{item.comments}</span>
                             </div>
                         </div>
                         <div className={styles.postItemMarkItem}>
@@ -36,7 +40,7 @@ const PostItem = ({ item} : iPostItem) => {
                                 d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path>
                         </svg>
                         </span>
-                            <span>{item.comments?.length}</span>
+                            <span>{item.likes}</span>
                         </div>
                     </div>
                 </div>
@@ -55,17 +59,17 @@ const PostItem = ({ item} : iPostItem) => {
                             d="M34.8 29.7V11c0-2.9-2.3-5.2-5.2-5.2H11c-2.9 0-5.2 2.3-5.2 5.2v18.7c0 2.9 2.3 5.2 5.2 5.2h18.7c2.8-.1 5.1-2.4 5.1-5.2zM39.2 15v16.1c0 4.5-3.7 8.2-8.2 8.2H14.9c-.6 0-.9.7-.5 1.1 1 1.1 2.4 1.8 4.1 1.8h13.4c5.7 0 10.3-4.6 10.3-10.3V18.5c0-1.6-.7-3.1-1.8-4.1-.5-.4-1.2 0-1.2.6z"></path>
                     </svg>
                 </div>)}
-                <Link href={`${query.id}/?p=${item.id}`} >
+                <Link href={`${postAuthor?.nickname}/?p=${item.id}`} >
                     <a>
                         <Image loader={() => item.imagesUrls[0]} src={item.imagesUrls[0]} width="293" height="293" className={styles.postItemImage} />
                     </a>
                 </Link>
             </div>
-            <Modal  isOpen={!!query?.p} onClose={() => router.push(query.id)}>
+            <Modal  isOpen={!!query?.p} onClose={() => router.back()}>
                 <PostModal item={item}/>
             </Modal>
         </>
     );
 };
 
-export default PostItem;
+export default React.memo(PostItem);

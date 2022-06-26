@@ -1,5 +1,24 @@
 {
   "common" : {
+    "header": {
+      "confirm" : {
+        "title": "Logout",
+        "text": "Are you sure?",
+        "logout": "Logout",
+        "cancel": "Cancel"
+      },
+      "dropdown": {
+        "profile": "Profile",
+        "settings": "Settings",
+        "logout": "Logout"
+      },
+      "search": {
+        "search": "search",
+        "recent": "Recent",
+        "noRecent": "No recent searches.",
+        "notFound": "No results found."
+      }
+    },
     "profilePage" : {
       "editBtn" : "Edit profile",
       "posts": "posts",
@@ -7,7 +26,9 @@
       "following": "following",
       "followBtn": "Follow",
       "unfollowBtn": "Unfollow",
-      "noPosts": "No Posts Yet"
+      "noPosts": "No Posts Yet",
+      "followers": "Подписчики",
+      "following": "Подписки"
     },
     "editPage": {
       "editProfile" : "Edit Profile",
@@ -51,7 +72,8 @@
       "facebookLogin": "Log in with Facebook",
       "forgotPassword": "Forgot password?",
       "haveAnAccount": "Don't have an account?",
-      "or": "OR"
+      "or": "OR",
+      "loginError": "Invalid email or password"
     },
     "signupPage": {
       "title": "Sign up to see photos and videos from your friends.",
@@ -71,6 +93,17 @@
       "send": "Send Login Link",
       "createAccount": "Create New Account",
       "login": "Back to Login"
+    },
+    "postPage" : {
+      "likesCount" : "likes",
+      "likesTitle" : "Likes",
+      "comments": {
+        "noCommentsTitle": "No comments",
+        "noCommentsText": "Start chating",
+        "addComment": "Add comments...",
+        "publish": "Publish",
+        "reply": "Reply"
+      }
     }
   }
 }

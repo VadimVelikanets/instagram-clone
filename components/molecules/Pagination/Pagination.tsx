@@ -1,28 +1,35 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {iPaginationProps} from "./types";
-import {getMorePostsById} from "../../../store/action-creators/posts";
 
-const Pagination = ({children, postKey, data, isLoading, postSize}: iPaginationProps) => {
+const Pagination = ({children, dataKey, data, isLoading, dataSize, loadNextDataCallback}: iPaginationProps) => {
+    const [isMoreDataLoading, setMoreDataLoading] = useState(false);
 
-    const loadNextPosts = useCallback(() => {
-        // if (postKey && !isLoading) {
-        //     setLoading(true)
-        //     dispatch(getMorePostsById(uid, postKey))
-        // }
-    },[postKey, isLoading, data])
+
+    const loadNextData = useCallback(() => {
+        if(dataKey && !isMoreDataLoading) {
+            setMoreDataLoading(true)
+            loadNextDataCallback()
+        }
+
+    },[dataKey, isLoading, data])
 
     useEffect(() => {
+        setMoreDataLoading(false)
+    }, [dataKey, data])
+
+    useEffect(() => {
+
         function watchScroll() {
-            window.addEventListener("scroll", loadNextPosts);
+            window.addEventListener("scroll", loadNextData);
         }
-        if(postSize > data.length) {
+        if(dataSize > data.length) {
             watchScroll();
         }
-
         return () => {
-            window.removeEventListener("scroll", loadNextPosts);
+            window.removeEventListener("scroll", loadNextData);
         };
-    }, [postKey, data, isLoading]);
+    }, [dataKey, data, isLoading]);
+
     return (
         <>
             {children}

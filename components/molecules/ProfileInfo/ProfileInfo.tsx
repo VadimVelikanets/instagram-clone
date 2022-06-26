@@ -13,9 +13,9 @@ import {
     subscribeToUser,
     unsubscribeToUser
 } from '../../../pages/api/subscribe';
-import FollowersModal from "../FollowersModal/FollowersModal";
-import FollowingModal from "../FollowingModal/FollowingModal";
+
 import {getPostsSize} from "../../../pages/api/post";
+import UserListModal from "../UserListModal/UserListModal";
 
 const ProfileInfo : FC<iProfileData>  = ({profileData}) => {
     const profile = useAppSelector(state => state.profile?.profile)
@@ -120,10 +120,16 @@ const ProfileInfo : FC<iProfileData>  = ({profileData}) => {
                 </div>
             </div>
             <Modal isOpen={!!query?.following} onClose={() => router.push(query.id)}>
-                <FollowingModal uid={profileData.uid}/>
+                <UserListModal id={profileData.uid}
+                               title={t('profilePage.following')}
+                               getUserListData={() =>getCurrentSubscritions(profileData.uid)}
+                />
             </Modal>
             <Modal isOpen={!!query?.followers} onClose={() => router.push(query.id)}>
-                 <FollowersModal uid={profileData.uid}/>
+                <UserListModal id={profileData.uid}
+                               title={t('profilePage.followers')}
+                               getUserListData={() =>getCurrentSubscribers(profileData.uid)}
+                />
             </Modal>
         </>
 
