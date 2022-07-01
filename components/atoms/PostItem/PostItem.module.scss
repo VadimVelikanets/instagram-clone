@@ -1,13 +1,25 @@
+@import "styles/breakpoints";
+
 .postItem {
   margin-bottom: 28px;
   transition: 0.4s all ease;
   position: relative;
   cursor: pointer;
-  width: 293px;
-  height: 293px;
+  width: calc(33% - 28px);
+  height: auto;
   z-index: 1;
   margin-right: 28px;
   margin-bottom: 28px;
+  
+  @media (max-width: $screen-sm) {
+    margin: 0 5px 5px 0;
+    width: calc(33% - 5px);
+  }
+
+  @media (max-width: $screen-xs) {
+    margin: 0 2px 2px 0;
+    width: calc(33% - 2px);
+  }
 
   &Bg {
     position: absolute;

@@ -5,11 +5,12 @@ import {useTranslation} from "react-i18next";
 import {useAppSelector} from "../../../hooks";
 import DragDropFiles from "../../atoms/DragDropFiles/DragDropFiles";
 import PreviewSlider from "../../molecules/PreviewSlider/PreviewSlider";
-import InputEmoji from 'react-input-emoji';
 import Switch from "../../atoms/Switch/Switch";
 import {iAddPostForm} from "./types";
 import AddLoader from "../../atoms/AddLoader/AddLoader";
 import {uploadFiles} from "../../../pages/api/post";
+import AddPostTextForm from "../../molecules/AddPostTextForm/AddPostTextForm";
+
 const AddPostForm: FC<iAddPostForm> = ({cancelPost, checkPostAdded}) => {
     const {t} = useTranslation();
     const [step, setStep] = useState(1);
@@ -48,6 +49,9 @@ const AddPostForm: FC<iAddPostForm> = ({cancelPost, checkPostAdded}) => {
         setAddLoading(false)
         checkPostAdded(true)
     }
+    const addEmoji = (event: React.ChangeEventHandler<HTMLInputElement>, emojiObject: object) => {
+        setDescription(description + emojiObject.emoji )
+    };
 
     return (
         <div className={styles.form}>
@@ -116,14 +120,10 @@ const AddPostForm: FC<iAddPostForm> = ({cancelPost, checkPostAdded}) => {
                                            height="28" width="28" className={styles.avatar}/>
                                     <div className={styles.profileName}>{profile?.nickname}</div>
                                 </div>
-                                <div className={styles.textarea}>
-                                    <InputEmoji
-                                        value={description}
-                                        onChange={setDescription}
-                                        placeholder={t('createPost.caption')}
-                                    />
-                                    <div className={styles.limit}>{description.length}/2200</div>
-                                </div>
+                                <AddPostTextForm description={description}
+                                                 onChange={e => setDescription(e.target.value)}
+                                                 addEmoji={addEmoji}
+                                                 placeholder={t('createPost.caption')}/>
                                 <div className={styles.placeInput}>
                                     <input type="text"
                                            value={place}

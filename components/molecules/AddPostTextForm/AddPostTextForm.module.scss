@@ -1,0 +1,22 @@
+.textarea {
+  position: relative;
+  border-bottom: 1px #dbdbdb solid;
+
+  .limit {
+    position: absolute;
+    right: 8px;
+    bottom: 4px;
+  }
+
+  textarea {
+    width: 100%;
+    outline: none;
+    height: 168px;
+    resize: none;
+    padding: 0 16px;
+  }
+}
+
+.picker {
+  padding: 0 16px;
+}
