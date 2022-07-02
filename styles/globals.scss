@@ -1,6 +1,7 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import "breakpoints";
 
 html,
 body {
@@ -33,9 +34,13 @@ a {
 
 .content {
   background-color: #fafafa;
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - 45px);
   height: 100%;
-  padding-top: 60px;
+
+  @media (min-width: $screen-md) {
+    min-height: calc(100vh - 60px);
+    padding-top: 60px;
+  }
 }
 
 .layout-container {

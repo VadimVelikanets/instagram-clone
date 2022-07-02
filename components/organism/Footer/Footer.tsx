@@ -2,8 +2,10 @@ import React, {useEffect} from 'react';
 import styles from "./Footer.module.scss";
 import LanguageSelect from "../../atoms/LanguageSelect/LanguageSelect";
 import useBreakpoint from "../../../hooks/useBreakpoint";
+import MobileMenu from "../../molecules/MobileMenu/MobileMenu";
+import {iFooter} from "./types";
 
-const Footer = () => {
+const Footer = ({uid}: iFooter) => {
 
     const breakpoint = useBreakpoint();
 
@@ -19,7 +21,7 @@ const Footer = () => {
                     </div>
                 </div>
             ) : (
-                <div>mobile</div>
+                uid && <MobileMenu uid={uid}/>
             )}
         </>
     );

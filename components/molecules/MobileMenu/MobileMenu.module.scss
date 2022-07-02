@@ -1,0 +1,20 @@
+.menu {
+  border-top: 1px #dbdbdb solid;
+  background-color: #ffffff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 10px 20px;
+  z-index: 10;
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    li {
+      height: 24px;
+    }
+  }
+}

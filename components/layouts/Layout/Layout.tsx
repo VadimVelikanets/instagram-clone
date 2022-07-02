@@ -34,7 +34,7 @@ const Layout: React.FC = ({children}: Props) => {
                         {children}
                     </div>
                 </div>
-                <Footer/>
+                <Footer uid={uid}/>
             </div>
         </>
 

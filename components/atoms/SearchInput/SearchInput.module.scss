@@ -1,11 +1,27 @@
+@import "styles/breakpoints";
+
 .search {
   position: relative;
+
+  @media (max-width: $screen-md) {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border-bottom: 1px solid #dbdbdb;
+    padding: 8px 16px;
+    z-index: 2;
+  }
 }
 
 .input {
   margin: 6px 16px 6px 40px;
   background-color: rgb(239, 239, 239);
   outline: none;
+
+  @media (max-width: $screen-md) {
+    background: #ffffff;
+  }
 }
 
 .searchIcon {
@@ -28,6 +44,13 @@
     .searchIcon {
       display: none;
     }
+  }
+
+  @media (max-width: $screen-md) {
+    margin: 0 auto;
+    border: 1px solid #dbdbdb;
+    background: #ffffff;
+    width: 100%;
   }
 }
 
@@ -77,6 +100,18 @@
     position: absolute;
     transform: rotate(45deg);
     width: 14px;
+  }
+
+  @media (max-width: $screen-md) {
+    top: 53px;
+    width: 100%;
+    min-height: calc(100vh - 98px);
+    border-radius: 0;
+    box-shadow: none;
+
+    &:before {
+      display: none;
+    }
   }
 }
 
